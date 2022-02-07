@@ -10,7 +10,7 @@ class UnionFind:
             self.sizes.append(1)
 
     def union(self, p, q):
-        # Time Complexity - O(log(n))
+        # Time Complexity - O(log*(n)), * -> this function veryyy close to constant O(1)
         p_node_root = self.root(p)
         q_node_root = self.root(q)
         if self.sizes[q_node_root] > self.sizes[p_node_root]:
@@ -21,14 +21,14 @@ class UnionFind:
             self.sizes[p_node_root] += self.sizes[q_node_root]
 
     def root(self, e):
-        # Time Complexity - O(log(n))
+        # Time Complexity - O(log*(n)), * -> this function veryyy close to constant O(1)
         while e != self.nodes[e]:
             self.nodes[e] = self.nodes[self.nodes[e]]
             e = self.nodes[e]
         return e
 
     def connected(self, p, q):
-        # Time Complexity - O(log(n))
+        # Time Complexity - O(log*(n)), * -> this function veryyy close to constant O(1)
         return self.root(p) == self.root(q)
 
 

@@ -1,4 +1,4 @@
-# Insertion sort (Сортировка вставками)
+# Insertion sort
 
 
 def insert_sort(array):

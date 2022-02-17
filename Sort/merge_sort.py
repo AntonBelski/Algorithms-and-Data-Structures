@@ -1,4 +1,4 @@
-# Merge Sort (Сортировка вставками)
+# Merge Sort
 
 
 def merge_sort(array):

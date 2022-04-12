@@ -19,7 +19,7 @@ class BinaryMaxHeap:
             i //= 2
 
     def sift_down(self, i):
-        # Move a node up in the tree, as long as needed; used to restore heap condition after insertion
+        # Move a node down in the tree, as long as needed; used to restore heap condition after deletion
         # Time Complexity - O(log(n))
         while i * 2 < len(self.heap):
             largest = i
@@ -47,8 +47,20 @@ class BinaryMaxHeap:
             max_value = self.heap[1]
             self.heap[1] = self.heap[-1]
             self.heap.pop()
-            self.sift_down(len(self.heap) - 1)
+            self.sift_down(1)
             return max_value
+
+    def extract_i(self, i):
+        # Return the value from index i, removing node with index i
+        # Time Complexity - O(log(n))
+        if 0 <= i <= len(self.heap) - 1:
+            self.heap[i], self.heap[-1] = self.heap[-1], self.heap[i]
+            value = self.heap.pop()
+            if self.heap and i // 2 > 0 and self.heap[i // 2] < self.heap[i]:
+                self.sift_up(i)
+            elif self.heap:
+                self.sift_down(i)
+            return value
 
     def get_max(self):
         # Return the max value
@@ -79,3 +91,10 @@ if __name__ == '__main__':
     print(binary_max_heap.heap)
     print(binary_max_heap.get_size())
     print(binary_max_heap.is_empty())
+    print(binary_max_heap.heap)
+    print(binary_max_heap.extract_i(2))
+    print(binary_max_heap.heap)
+    binary_max_heap.insert(4)
+    print(binary_max_heap.heap)
+    print(binary_max_heap.extract_i(3))
+    print(binary_max_heap.heap)
